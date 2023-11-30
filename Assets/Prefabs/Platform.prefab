@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gem
       objectReference: {fileID: 0}
+    - target: {fileID: 1140848531757784460, guid: 1d57a0849dd2a5a4ca5b5565e09a109f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4634244984608825772, guid: 1d57a0849dd2a5a4ca5b5565e09a109f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.28031

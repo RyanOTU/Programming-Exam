@@ -11,7 +11,7 @@ public class Gem : MonoBehaviour
     {
         uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         Debug.Log("Gem hit!");
         if (collision.gameObject.tag == "Ball")

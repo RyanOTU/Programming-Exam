@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class BallController : MonoBehaviour
 {
@@ -47,6 +49,7 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.tag == "DeathBox")
         {
             gameOver = true;
+            SceneManager.LoadScene(0);
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -58,7 +61,6 @@ public class BallController : MonoBehaviour
             rb.useGravity = true;
             rb.angularDrag = 0.8f;
             if (camFollowTimer <= 0) cam.transform.parent = null;
-            gameOver = true;
         }
     }
     private void OnCollisionStay(Collision collision)
