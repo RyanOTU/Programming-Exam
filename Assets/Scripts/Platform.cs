@@ -6,6 +6,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     Rigidbody rb;
+    public Gem gem;
     bool hasCollided = false;
     bool startedDying = false;
     float deathTimer = 0;
@@ -13,6 +14,8 @@ public class Platform : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        int isGemEnabled = Random.Range(0, 2);
+        if (isGemEnabled == 0) gem.destroyGem();
     }
 
     // Update is called once per frame

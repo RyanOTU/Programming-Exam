@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BallController : MonoBehaviour
 {
     public Camera cam;
     Rigidbody rb;
     bool onXAxis = true;
-    bool gameOver = false;
+    public bool gameOver = true;
     public float ballSpeed;
+    float camFollowTimer = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -20,27 +22,42 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!gameOver)
         {
-            onXAxis = !onXAxis;
+            if (Input.GetMouseButtonDown(0))
+            {
+                onXAxis = !onXAxis;
+            }
+            if (onXAxis)
+            {
+                rb.velocity = new Vector3(ballSpeed, rb.velocity.y, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, ballSpeed);
+            }
         }
-        if (onXAxis)
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
         {
-            rb.velocity = new Vector3(ballSpeed, rb.velocity.y, 0);
+            camFollowTimer = 50;
         }
-        else
+        if (collision.gameObject.tag == "DeathBox")
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, ballSpeed);
+            gameOver = true;
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Platform>())
+        if (collision.gameObject.tag == "Ground")
         {
+            camFollowTimer--;
             Debug.Log("Exiting");
             rb.useGravity = true;
             rb.angularDrag = 0.8f;
-            cam.transform.parent = null;
+            if (camFollowTimer <= 0) cam.transform.parent = null;
             gameOver = true;
         }
     }

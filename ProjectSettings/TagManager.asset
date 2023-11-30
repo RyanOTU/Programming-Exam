@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Ground
+  - Gem
   layers:
   - Default
   - TransparentFX
