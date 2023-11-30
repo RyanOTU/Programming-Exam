@@ -11,6 +11,7 @@ public class BallController : MonoBehaviour
     Rigidbody rb;
     bool onXAxis = true;
     public bool gameOver = true;
+    bool isFalling = false;
     public float ballSpeed;
     float camFollowTimer = 10;
 
@@ -60,6 +61,8 @@ public class BallController : MonoBehaviour
             Debug.Log("Exiting");
             rb.useGravity = true;
             rb.angularDrag = 0.8f;
+            isFalling = true;
+            Debug.Log("Gravity Enabled");
             if (camFollowTimer <= 0) cam.transform.parent = null;
         }
     }
