@@ -12,7 +12,7 @@ public class BallController : MonoBehaviour
     bool onXAxis = true;
     public bool gameOver = true;
     public float ballSpeed;
-    float camFollowTimer = 50;
+    float camFollowTimer = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +67,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            Debug.Log("Reset!");
             rb.useGravity = false;
         }
     }
