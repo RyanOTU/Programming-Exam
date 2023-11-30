@@ -48,7 +48,6 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            //cam.transform.parent = this.transform;
             rb.useGravity = false;
         }
     }
